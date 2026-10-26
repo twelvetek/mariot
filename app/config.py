@@ -18,3 +18,4 @@ class Config:
         self.db_file = parser["DATABASE"]["FILE"]
 
         self.log_level = parser["LOGGING"]["LEVEL"]
+        self.log_file = config_file.parent / parser["LOGGING"]["FILE"]
