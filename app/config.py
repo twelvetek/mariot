@@ -1,10 +1,20 @@
-import os
+from configparser import ConfigParser
 from pathlib import Path
-from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
 
 class Config:
-    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
-    DATABASE_PATH = BASE_DIR / "instance" / "app.db"
+
+    def __init__(self):
+
+        config_file = Path(__file__).parent.parent / "config.ini"
+
+        parser = ConfigParser()
+        parser.read(config_file)
+
+        self.web_host = parser["WEB"]["HOST"]
+        self.web_port = parser.getint("WEB", "PORT")
+        self.debug = parser.getboolean("WEB", "DEBUG")
+
+        self.db_file = parser["DATABASE"]["FILE"]
+
+        self.log_level = parser["LOGGING"]["LEVEL"]

@@ -1,18 +1,161 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <form method="POST" action="{{ url_for('main.add_user') }}">
-        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <button type="submit">Ajouter</button>
-    </form>
+{% block title %}Accueil - Dashboard IoT{% endblock %}
 
-    <h2>Utilisateurs</h2>
-    <ul>
-        {% for user in users %}
-            <li>{{ user["username"] }} - {{ user["email"] }}</li>
-        {% else %}
-            <li>Aucun utilisateur pour le moment.</li>
-        {% endfor %}
-    </ul>
+{% block content %}
+
+<h1>Vue d'Ensemble</h1>
+
+<section class="cards">
+
+    <div class="card green">
+        <i class="fa-solid fa-circle-check"></i>
+        <div>
+            <h2>8 Capteurs</h2>
+            <p>en ligne</p>
+        </div>
+    </div>
+
+    <div class="card orange">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div>
+            <h2>2 Alertes</h2>
+            <p>actives</p>
+        </div>
+    </div>
+
+    <div class="card blue">
+        <i class="fa-solid fa-temperature-half"></i>
+        <div>
+            <h2>Temp. Moyenne</h2>
+            <p>22,6°C</p>
+        </div>
+    </div>
+
+    <div class="card purple">
+        <i class="fa-solid fa-clock"></i>
+        <div>
+            <h2>Dernière Sync.</h2>
+            <p>il y a 5 min</p>
+        </div>
+    </div>
+
+</section>
+
+<section class="dashboard-grid">
+
+    <div class="panel">
+
+        <h2>Capteurs Actifs</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Type</th>
+                    <th>Valeur</th>
+                    <th>État</th>
+                    <th>Localisation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Température Salon</td>
+                    <td>Température</td>
+                    <td>22,1°C</td>
+                    <td><span class="badge online">EN LIGNE</span></td>
+                    <td>Salon</td>
+                </tr>
+
+                <tr>
+                    <td>Détecteur Fumée</td>
+                    <td>Fumée</td>
+                    <td><span class="badge alert">ALERTE</span></td>
+                    <td></td>
+                    <td>Garage</td>
+                </tr>
+
+                <tr>
+                    <td>Capteur Gaz</td>
+                    <td>Gaz</td>
+                    <td>0,3 % LEL</td>
+                    <td><span class="badge online">EN LIGNE</span></td>
+                    <td>Cuisine</td>
+                </tr>
+
+                <tr>
+                    <td>Humidité Cave</td>
+                    <td>Humidité</td>
+                    <td>89 %</td>
+                    <td><span class="badge online">EN LIGNE</span></td>
+                    <td>Cave</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <a href="#" class="link">Voir tous les capteurs</a>
+
+    </div>
+
+    <div class="panel">
+
+        <h2>Alertes en Cours</h2>
+
+        <div class="alert-box danger">
+            <i class="fa-solid fa-fire"></i>
+            <div>
+                <strong>Fumée détectée dans le Garage</strong>
+                <p>Intervention requise !</p>
+            </div>
+        </div>
+
+        <div class="alert-box warning">
+            <i class="fa-solid fa-mask-face"></i>
+            <div>
+                <strong>Niveau de Gaz Élevé</strong>
+                <p>Cuisine : 0,3 % LEL</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="tips">
+
+    <h2>Conseils</h2>
+
+    <div class="tips-grid">
+
+        <div class="tip blue-light">
+            <i class="fa-solid fa-fan"></i>
+            <div>
+                <h3>Ventilation Recommandée</h3>
+                <p>Aérez la cave pour réduire l'humidité.</p>
+            </div>
+        </div>
+
+        <div class="tip green-light">
+            <i class="fa-solid fa-battery-three-quarters"></i>
+            <div>
+                <h3>Vérifiez les Batteries</h3>
+                <p>Contrôlez le niveau de charge des capteurs.</p>
+            </div>
+        </div>
+
+        <div class="tip yellow-light">
+            <i class="fa-solid fa-wrench"></i>
+            <div>
+                <h3>Test des Détecteurs</h3>
+                <p>Testez vos détecteurs de fumée chaque semaine.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

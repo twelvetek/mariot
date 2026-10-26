@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon app Flask</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% block title %}Dashboard IoT{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Mon app Flask</h1>
-    </header>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+<header>
+    <div class="navbar">
+        <div class="logo">
+            Dashboard IoT
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Accueil</a></li>
+                <li><a href="#">Capteurs</a></li>
+                <li><a href="#">Alertes</a></li>
+                <li><a href="#">Configuration</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
 </body>
 </html>
